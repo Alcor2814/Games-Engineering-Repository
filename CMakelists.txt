@@ -16,7 +16,11 @@ add_subdirectory("lib/SFML")
 set(SFML_INCS "lib/SFML/include")
 link_directories("${CMAKE_BINARY_DIR}/lib/SFML/lib")
 
+<<<<<<< HEAD
 #### Project Label ####
+=======
+#### Practical 2 ####
+>>>>>>> 1fbd3e1 (Full Pong commit)
 add_executable(${PROJECT_NAME} main.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCS})
 target_link_libraries(${PROJECT_NAME} sfml-graphics)
