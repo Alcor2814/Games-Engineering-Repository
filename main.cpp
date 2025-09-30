@@ -134,8 +134,8 @@ void update(float dt) {
 				ball_velocity.x *= -1;
 			}
 	else if (bx > gameWidth - paddleOffsetWall - paddleSize.x &&
-			by > paddles[1].getPosition().y + (paddleSize.y * 0.5) &&
-			by < paddles[1].getPosition().y - (paddleSize.y * 0.5)) {
+			by > paddles[1].getPosition().y + (paddleSize.y * 0.5f) &&
+			by < paddles[1].getPosition().y - (paddleSize.y * 0.5f)) {
 		// bounce off right paddle
 		ball_velocity.x *= -1;
 	}
