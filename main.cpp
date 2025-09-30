@@ -30,7 +30,7 @@ void clean() {
 
 int main() {
 	//create the window
-	sf::RenderWindow window(sf::VideoMode({ gameWidth, gameHeight }), "NAME");
+	sf::RenderWindow window(sf::VideoMode({ gameWidth, gameHeight }), "Circle");
 	window.setVerticalSyncEnabled(true);
 
 	//initialise and load
