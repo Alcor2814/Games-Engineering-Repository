@@ -40,3 +40,5 @@
 # debug information files
 *.dwo
 /lib/SFML/
+/.vs
+/out/build/x64-Debug
