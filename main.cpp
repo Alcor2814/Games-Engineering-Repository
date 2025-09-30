@@ -35,7 +35,7 @@ sf::Text text;
 void setEntityPositions() {
 	// reset paddle position
 	paddles[0].setPosition(paddleOffsetWall + paddleSize.x / 2.f, gameHeight / 2.f);
-	paddles[1].setPosition(gameWidth - paddleOffsetWall - paddleSize.x, gameHeight / 2.f);
+	paddles[1].setPosition(gameWidth - paddleOffsetWall - paddleSize.x / 2.f, gameHeight / 2.f);
 	// reset Ball Position
 	ball.setPosition(gameWidth / 2, gameHeight / 2);
 	ball_velocity = { (is_player_serving ? initial_velocity_x : -initial_velocity_x), initial_velocity_y };
@@ -133,10 +133,10 @@ void update(float dt) {
 		by < paddles[0].getPosition().y + (paddleSize.y * 0.5)) {
 				ball_velocity.x *= -1;
 			}
-	else if (bx > gameWidth - paddleOffsetWall - paddleSize.x &&
-			by > paddles[1].getPosition().y + (paddleSize.y * 0.5f) &&
-			by < paddles[1].getPosition().y - (paddleSize.y * 0.5f)) {
-		// bounce off right paddle
+	else if (
+		bx > gameWidth - paddleSize.x - paddleOffsetWall &&
+		by > paddles[1].getPosition().y - (paddleSize.y * 0.5f) &&
+		by < paddles[1].getPosition().y + (paddleSize.y * 0.5f)) {
 		ball_velocity.x *= -1;
 	}
 }
