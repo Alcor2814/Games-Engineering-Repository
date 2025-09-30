@@ -59,13 +59,18 @@ void init() {
 	text.setFont(font);
 	// set the character size to 24 pixels
 	text.setCharacterSize(24);
+
+	scores[0] = 0;
+	scores[1] = 0;
+	text.setString((char)scores[0] + " | " + (char)scores[1]);
+	text.setPosition((gameWidth * .5f) - (text.getLocalBounds().width * .5f), 0);
 }
 
 void reset() {
 	setEntityPositions();
 
 	// Update Score Text
-	text.setString(scores[0] + " | " + scores[1]);
+	text.setString((char)scores[0] + " | " + (char)scores[1]);
 	// Keep Score Text Centered
 	text.setPosition((gameWidth * .5f) - (text.getLocalBounds().width * .5f), 0);
 }
@@ -146,6 +151,7 @@ void render(sf::RenderWindow& window) {
 	window.draw(paddles[0]);
 	window.draw(paddles[1]);
 	window.draw(ball);
+	window.draw(text);
 	window.display();
 }
 
