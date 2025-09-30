@@ -15,7 +15,7 @@ void init() {
 		std::cerr << "Failed to load spritesheet!" << std::endl;
 	}
 	invader.setTexture(spritesheet);
-	invader.setTextureRect(IntRect(Vector2i(0, 0), Vector2i(32, 32)));
+	invader.setTextureRect(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(32, 32)));
 }
 
 void reset() {
