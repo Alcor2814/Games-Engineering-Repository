@@ -1,49 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
-//Parameters
-const int gameWidth = 800;
-const int gameHeight = 600;
-const float time_step = 0.017f; //60 fps
+#include "game_system.hpp"
 
 //Objects of the game
 sf::Texture spritesheet;
 sf::Sprite invader;
 
-void init() {
-	if(!spritesheet.loadFromFile("resources/images/invaders_sheet.png")) {
-		std::cerr << "Failed to load spritesheet!" << std::endl;
-	}
-	else {
-		std::cout << "Loaded spritesheet" << std::endl;
-	}
-	invader.setTexture(spritesheet);
-	invader.setTextureRect(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(32, 32)));
-}
-
-void reset() {
-
-}
-
-void update(float dt) {
-
-}
-
-void render(sf::RenderWindow& window) {
-	window.draw(invader);
-}
-
-void clean() {
-	//free up the memory if necessary.
-}
-
 int main() {
+	const float time_step = 0.017f; //60 fps
+
 	//create the window
-	sf::RenderWindow window(sf::VideoMode({ gameWidth, gameHeight }), "Space Invaders");
+	sf::RenderWindow window(sf::VideoMode({ GameSystem::Parameters::gameWidth, GameSystem::Parameters::gameHeight }), "Space Invaders");
 	window.setVerticalSyncEnabled(true);
 
 	//initialise and load
-	init();
+	GameSystem::init();
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -57,12 +28,56 @@ int main() {
 		const float dt = clock.restart().asSeconds();
 
 		window.clear();
-		update(dt);
-		render(window);
+		GameSystem::update(dt);
+		GameSystem::render(window);
 		//wait for the time_step to finish before displaying the next frame.
 		sf::sleep(sf::seconds(time_step));
 		window.display();
 	}
 	//Unload and shutdown
-	clean();
+	GameSystem::clean();
+}
+
+/// <summary>
+/// Initialises any values that need to be loaded.
+/// </summary>
+void init() {
+	if (!spritesheet.loadFromFile("resources/images/invaders_sheet.png")) {
+		std::cerr << "Failed to load spritesheet!" << std::endl;
+	}
+	else {
+		std::cout << "Loaded spritesheet" << std::endl;
+	}
+	invader.setTexture(spritesheet);
+	invader.setTextureRect(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(32, 32)));
+}
+
+/// <summary>
+/// For resetting in games where resets are possible.
+/// </summary>
+void GameSystem::reset() {
+
+}
+
+/// <summary>
+/// Updates entities.
+/// </summary>
+/// <param name="dt"></param>
+void GameSystem::update(const float& dt) {
+
+}
+
+/// <summary>
+/// Renders entities.
+/// </summary>
+/// <param name="window">The display window.</param>
+void GameSystem::render(sf::RenderWindow& window) {
+	window.draw(invader);
+}
+
+/// <summary>
+/// Cleans up anything that may not have been cleaned by the end of the game.
+/// </summary>
+void GameSystem::clean() {
+	//free up the memory if necessary.
 }
