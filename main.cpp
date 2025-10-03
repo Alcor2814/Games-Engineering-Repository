@@ -52,6 +52,7 @@ int main() {
 		render(window);
 		//wait for the time_step to finish before displaying the next frame.
 		sf::sleep(sf::seconds(time_step));
+		window.display();
 	}
 	//Unload and shutdown
 	clean();
