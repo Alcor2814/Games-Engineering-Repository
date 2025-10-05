@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "game_system.hpp"
+#include "game_parameters.hpp"
 
 GameSystem gameSystem;
 
@@ -7,7 +8,7 @@ int main() {
 	const float time_step = 0.017f; //60 fps
 
 	//create the window
-	sf::RenderWindow window(sf::VideoMode({ GameSystem::Parameters::gameWidth, GameSystem::Parameters::gameHeight }), "Space Invaders");
+	sf::RenderWindow window(sf::VideoMode({ Parameters::gameWidth, Parameters::gameHeight }), "Space Invaders");
 	window.setVerticalSyncEnabled(true);
 
 	//initialise and load

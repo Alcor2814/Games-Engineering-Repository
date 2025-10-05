@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ship.hpp"
 #include "game_system.hpp"
+#include "game_parameters.hpp"
 
 /// <summary>
 /// Initialises any values that need to be loaded.
@@ -18,7 +19,7 @@ void GameSystem::init() {
 	{
 		inv = std::make_shared<Invader>(
 			GameSystem::spritesheet,
-			sf::IntRect(sf::Vector2i((i * 32), 0), sf::Vector2i(GameSystem::Parameters::sprite_size, GameSystem::Parameters::sprite_size)),
+			sf::IntRect(sf::Vector2i((i * 32), 0), sf::Vector2i(Parameters::sprite_size, Parameters::sprite_size)),
 			sf::Vector2f({ (100.0f + (i * 32)), 100.0f }));
 		GameSystem::ships.push_back(inv);
 	}

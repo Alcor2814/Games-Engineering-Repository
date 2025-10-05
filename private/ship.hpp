@@ -24,4 +24,8 @@ class Invader : public Ship {
 		Invader(const Invader& inv);
 		Invader(const sf::Texture& spritesheet, sf::IntRect ir, sf::Vector2f pos);
 		void Update(const float& dt) override;
+		void Move_Down();
+
+		static bool direction;
+		static float speed, acceleration;
 };

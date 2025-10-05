@@ -6,16 +6,9 @@
 
 struct GameSystem {
 	//Global variables
-	std::vector<std::shared_ptr<Ship>> ships; //vector of shared pointers to ships
+	static std::vector<std::shared_ptr<Ship>> ships; //vector of shared pointers to ships
 	sf::Texture spritesheet;
 	sf::Sprite invader;
-
-	//Parameters
-	struct Parameters {
-		static constexpr int gameWidth = 800;
-		static constexpr int gameHeight = 600;
-		static constexpr int sprite_size = 32;
-	};
 
 	// Game System functions
 	 void init();
