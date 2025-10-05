@@ -5,6 +5,11 @@ project(space_invaders CXX)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Get sources
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    src/*.cpp
+)
+
 #### Setup Directories ####
 #Main output directory
 SET(OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/")
@@ -17,13 +22,11 @@ set(SFML_INCS "lib/SFML/include")
 link_directories("${CMAKE_BINARY_DIR}/lib/SFML/lib")
 
 #### Practical 3 ####
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
+target_include_directories(${PROJECT_NAME} PRIVATE )
 target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/private)
 target_link_libraries(${PROJECT_NAME} sfml-graphics)
 
-# Move Resource folder to executable folder
-add_custom_command(
-    TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/resources 
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>/resources)
+# Resources File
+file(COPY resources DESTINATION ${CMAKE_BINARY_DIR})
