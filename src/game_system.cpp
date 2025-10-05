@@ -12,11 +12,16 @@ void GameSystem::init() {
 	else {
 		std::cout << "Loaded spritesheet" << std::endl;
 	}
-	std::shared_ptr<Invader> inv = std::make_shared<Invader>(
-		GameSystem::spritesheet,
-		sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(32, 32)),
-		sf::Vector2f({ 100.0f, 100.0f }));
-	GameSystem::ships.push_back(inv);
+
+	std::shared_ptr<Invader> inv;
+	for (size_t i = 0; i < 6; i++)
+	{
+		inv = std::make_shared<Invader>(
+			GameSystem::spritesheet,
+			sf::IntRect(sf::Vector2i((i * 32), 0), sf::Vector2i(GameSystem::Parameters::sprite_size, GameSystem::Parameters::sprite_size)),
+			sf::Vector2f({ (100.0f + (i * 32)), 100.0f }));
+		GameSystem::ships.push_back(inv);
+	}
 }
 
 /// <summary>
@@ -31,7 +36,10 @@ void GameSystem::reset() {
 /// </summary>
 /// <param name="dt"></param>
 void GameSystem::update(const float& dt) {
-
+	for (const std::shared_ptr<Ship>& s : ships)
+	{
+		s->Update(dt);
+	}
 }
 
 /// <summary>
@@ -39,7 +47,10 @@ void GameSystem::update(const float& dt) {
 /// </summary>
 /// <param name="window">The display window.</param>
 void GameSystem::render(sf::RenderWindow& window) {
-	window.draw(GameSystem::invader);
+	for (const std::shared_ptr<Ship>& s : ships)
+	{
+		window.draw(*(s.get()));
+	}
 }
 
 /// <summary>
