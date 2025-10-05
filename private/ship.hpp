@@ -3,19 +3,19 @@
 #include <SFML/Graphics.hpp>
 
 class Ship : public sf::Sprite {
-public:
-	//Constructor
-		Ship();
-	//Copy Constructor
-		Ship(const Ship& s);
-	//Constructor that takes a Sprite.
-		Ship(const sf::Texture& spritesheet, sf::IntRect ir);
-	//Virtual deconstructor
-		virtual ~Ship() = 0;
-	//Updater
-		virtual void Update(const float& dt);
-protected:
-	sf::IntRect _sprite;
+	public:
+		//Constructor
+			Ship();
+		//Copy Constructor
+			Ship(const Ship& s);
+		//Constructor that takes a Sprite.
+			Ship(const sf::Texture& spritesheet, sf::IntRect ir);
+		//Virtual deconstructor
+			virtual ~Ship() = 0;
+		//Updater
+			virtual void Update(const float& dt);
+	protected:
+		sf::IntRect _sprite;
 };
 
 class Invader : public Ship {
@@ -28,4 +28,10 @@ class Invader : public Ship {
 
 		static bool direction;
 		static float speed, acceleration;
+};
+
+class Player : public Ship {
+	public:
+		Player();
+		void Update(const float& dt) override;
 };

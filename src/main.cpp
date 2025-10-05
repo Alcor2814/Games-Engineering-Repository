@@ -5,7 +5,6 @@
 GameSystem gameSystem;
 
 int main() {
-	const float time_step = 0.017f; //60 fps
 
 	//create the window
 	sf::RenderWindow window(sf::VideoMode({ Parameters::gameWidth, Parameters::gameHeight }), "Space Invaders");
@@ -14,6 +13,10 @@ int main() {
 	//initialise and load
 	gameSystem.init();
 	while (window.isOpen()) {
+
+		static sf::Clock clock;
+		const float dt = clock.restart().asSeconds();
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -22,14 +25,11 @@ int main() {
 				window.close();
 		}
 
-		static sf::Clock clock;
-		const float dt = clock.restart().asSeconds();
-
 		window.clear();
 		gameSystem.update(dt);
 		gameSystem.render(window);
 		//wait for the time_step to finish before displaying the next frame.
-		sf::sleep(sf::seconds(time_step));
+		sf::sleep(sf::seconds(Parameters::time_step));
 		window.display();
 	}
 	//Unload and shutdown

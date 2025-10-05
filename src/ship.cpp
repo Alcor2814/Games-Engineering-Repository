@@ -2,6 +2,7 @@
 #include "ship.hpp"
 #include "game_system.hpp"
 #include "game_parameters.hpp"
+#include <iostream>
 
 //usings
 using param = Parameters;
@@ -41,12 +42,20 @@ void Invader::Update(const float& dt) {
 }
 
 void Invader::Move_Down() {
-	for (const std::shared_ptr<Ship>& s : gs::ships)
+	for (std::shared_ptr<Ship>& s : gs::ships)
 	{
 		s->setPosition(s->getPosition().x, s->getPosition().y + param::sprite_size);
 	}
 }
 
-bool Invader::direction;
-float Invader::speed;
+bool Invader::direction = true;
+float Invader::speed = 20.0f;
 float Invader::acceleration = 0.0f;
+
+Player::Player() : 
+	Ship(const sf::Texture& spritesheet
+		sf::IntRect(sf::Vector2i((param::sprite_size * 5, param::sprite_size),
+		sf::Vector2i(param:sprite_size, param::sprite_size))) {
+	setOrigin(param::sprite_size / 2.f, param::sprite_size / 2.f);
+	setPosition(param::gameWidth / 2.f, param::gameHeight - static_cast<float>(param::sprite_size));
+}

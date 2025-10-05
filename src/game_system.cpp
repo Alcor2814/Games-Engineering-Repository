@@ -37,7 +37,7 @@ void GameSystem::reset() {
 /// </summary>
 /// <param name="dt"></param>
 void GameSystem::update(const float& dt) {
-	for (const std::shared_ptr<Ship>& s : ships)
+	for (std::shared_ptr<Ship> &s : ships)
 	{
 		s->Update(dt);
 	}
@@ -59,4 +59,7 @@ void GameSystem::render(sf::RenderWindow& window) {
 /// </summary>
 void GameSystem::clean() {
 	//free up the memory if necessary.
+	for (std::shared_ptr<Ship>& ship : ships)
+		ship.reset();//free up the memory of this shared pointer
+	ships.clear();//clear the vector to be sure we free up any memory left.
 }
