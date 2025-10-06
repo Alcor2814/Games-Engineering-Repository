@@ -23,6 +23,8 @@ void GameSystem::init() {
 			sf::Vector2f({ (100.0f + (i * 32)), 100.0f }));
 		GameSystem::ships.push_back(inv);
 	}
+
+	Player* player = new Player();
 }
 
 /// <summary>

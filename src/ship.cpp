@@ -10,6 +10,7 @@ using gs = GameSystem;
 
 //Initialise static variable
 std::vector<std::shared_ptr<Ship>> gs::ships{};
+sf::Texture gs::spritesheet;
 
 Ship::Ship() {};
 Ship::Ship(const Ship &s) :
@@ -52,10 +53,24 @@ bool Invader::direction = true;
 float Invader::speed = 20.0f;
 float Invader::acceleration = 0.0f;
 
-Player::Player() : 
-	Ship(const sf::Texture& spritesheet
-		sf::IntRect(sf::Vector2i((param::sprite_size * 5, param::sprite_size),
-		sf::Vector2i(param:sprite_size, param::sprite_size))) {
-	setOrigin(param::sprite_size / 2.f, param::sprite_size / 2.f);
-	setPosition(param::gameWidth / 2.f, param::gameHeight - static_cast<float>(param::sprite_size));
+Player::Player() :
+	Ship(gs::spritesheet, 
+		sf::IntRect(sf::Vector2i((param::sprite_size * 5), param::sprite_size), sf::Vector2i(param::sprite_size, param::sprite_size)))
+	{
+		setOrigin(param::sprite_size / 2.f, param::sprite_size / 2.f);
+		setPosition(param::gameWidth / 2.f, param::gameHeight - static_cast<float>(param::sprite_size));
+	};
+
+void Player::Update(const float& dt) {
+	Ship::Update(dt);
+	//Move left
+	if (sf::Keyboard::isKeyPressed(GameSystem::controls[0])) {
+		move(dt * (false ? 1.0f : -1.0f) * Player::speed, 0.0f);
+	}
+	//Move Right
+	if (sf::Keyboard::isKeyPressed(GameSystem::controls[1])) {
+		move(dt * (true ? 1.0f : -1.0f) * Player::speed, 0.0f);
+	}
 }
+
+float Player::speed = 20.0f;
