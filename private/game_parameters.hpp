@@ -6,8 +6,8 @@ struct Parameters {
 	static constexpr float time_step = 0.017f; //60 fps
 
 	static constexpr sf::Keyboard::Key controls[3] = {
-		sf::Keyboard::A,   // Player Left
-		sf::Keyboard::Z,   // Player Right
+		sf::Keyboard::Left,   // Player Left
+		sf::Keyboard::Right,   // Player Right
 		sf::Keyboard::Space,   // Player Fire
 	};
 };

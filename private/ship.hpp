@@ -14,6 +14,7 @@ class Ship : public sf::Sprite {
 			virtual ~Ship() = 0;
 		//Updater
 			virtual void Update(const float& dt);
+			virtual void Ship::Move_Down();
 	protected:
 		sf::IntRect _sprite;
 };
@@ -24,7 +25,7 @@ class Invader : public Ship {
 		Invader(const Invader& inv);
 		Invader(const sf::Texture& spritesheet, sf::IntRect ir, sf::Vector2f pos);
 		void Update(const float& dt) override;
-		void Move_Down();
+		void Move_Down() override;
 
 		static bool direction;
 		static float speed, acceleration;
@@ -35,4 +36,5 @@ class Player : public Ship {
 		Player();
 		void Update(const float& dt) override;
 		static float speed;
+		void Move_Down() override;
 };

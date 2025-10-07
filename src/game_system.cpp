@@ -24,7 +24,7 @@ void GameSystem::init() {
 		GameSystem::ships.push_back(inv);
 	}
 
-	Player* player = new Player();
+	GameSystem::ships.push_back(std::make_shared<Player>());
 }
 
 /// <summary>

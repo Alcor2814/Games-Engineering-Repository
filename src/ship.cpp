@@ -23,6 +23,7 @@ Ship::Ship(const sf::Texture& spritesheet, sf::IntRect ir) : Sprite() {
 void Ship::Update(const float& dt) {}
 // Deconstructor
 Ship::~Ship() = default;
+void Ship::Move_Down() {};
 
 Invader::Invader() : Ship() {}
 Invader::Invader(const Invader& inv) : Ship(inv) {}
@@ -38,15 +39,15 @@ void Invader::Update(const float& dt) {
 	{
 		direction = !direction;
 		speed += Invader::acceleration;
-		Move_Down();
+		for (std::shared_ptr<Ship>& s : gs::ships)
+		{
+			s->Move_Down();
+		}
 	}
 }
 
 void Invader::Move_Down() {
-	for (std::shared_ptr<Ship>& s : gs::ships)
-	{
-		s->setPosition(s->getPosition().x, s->getPosition().y + param::sprite_size);
-	}
+	setPosition(getPosition().x, getPosition().y + param::sprite_size);
 }
 
 bool Invader::direction = true;
@@ -64,13 +65,15 @@ Player::Player() :
 void Player::Update(const float& dt) {
 	Ship::Update(dt);
 	//Move left
-	if (sf::Keyboard::isKeyPressed(param::controls[0])) {
+	if (sf::Keyboard::isKeyPressed(param::controls[0]) && getPosition().x < param::gameWidth) {
 		move(dt * (false ? 1.0f : -1.0f) * Player::speed, 0.0f);
 	}
 	//Move Right
-	if (sf::Keyboard::isKeyPressed(param::controls[1])) {
+	if (sf::Keyboard::isKeyPressed(param::controls[1]) && getPosition().x > 0) {
 		move(dt * (true ? 1.0f : -1.0f) * Player::speed, 0.0f);
 	}
+void Player::Move_Down() {
+
 }
 
-float Player::speed = 20.0f;
+float Player::speed = 100.0f;
