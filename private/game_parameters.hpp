@@ -5,6 +5,8 @@ struct Parameters {
 	static constexpr int sprite_size = 32;
 	static constexpr float time_step = 0.017f; //60 fps
 
+	static constexpr int bulletSpeed = 50;
+
 	static constexpr sf::Keyboard::Key controls[3] = {
 		sf::Keyboard::Left,   // Player Left
 		sf::Keyboard::Right,   // Player Right

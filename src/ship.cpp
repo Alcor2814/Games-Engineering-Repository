@@ -3,6 +3,7 @@
 #include "game_system.hpp"
 #include "game_parameters.hpp"
 #include <iostream>
+#include <bullet.hpp>
 
 //usings
 using param = Parameters;
@@ -24,6 +25,10 @@ void Ship::Update(const float& dt) {}
 // Deconstructor
 Ship::~Ship() = default;
 void Ship::Move_Down() {};
+void Ship::explode() {
+	setTextureRect(sf::IntRect(sf::Vector2i(128, 32), sf::Vector2i(32, 32)));
+	_exploded = true;
+}
 
 Invader::Invader() : Ship() {}
 Invader::Invader(const Invader& inv) : Ship(inv) {}
@@ -50,7 +55,7 @@ void Invader::Move_Down() {
 	setPosition(getPosition().x, getPosition().y + param::sprite_size);
 }
 
-bool Invader::direction = true;
+bool Invader::direction = false;
 float Invader::speed = 20.0f;
 float Invader::acceleration = 0.0f;
 
@@ -72,6 +77,15 @@ void Player::Update(const float& dt) {
 	if (sf::Keyboard::isKeyPressed(param::controls[1]) && getPosition().x > 0) {
 		move(dt * (true ? 1.0f : -1.0f) * Player::speed, 0.0f);
 	}
+
+	//Fire Bullet
+	static std::vector<std::shared_ptr<Bullet>> bullets;
+	if (sf::Keyboard::isKeyPressed(param::controls[2]))
+	{
+		Bullet::fire(getPosition(), false);
+	}
+}
+
 void Player::Move_Down() {
 
 }

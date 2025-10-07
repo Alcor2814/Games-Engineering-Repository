@@ -2,6 +2,7 @@
 #include "ship.hpp"
 #include "game_system.hpp"
 #include "game_parameters.hpp"
+#include "bullet.hpp"
 
 /// <summary>
 /// Initialises any values that need to be loaded.
@@ -43,6 +44,7 @@ void GameSystem::update(const float& dt) {
 	{
 		s->Update(dt);
 	}
+	Bullet::update(dt);
 }
 
 /// <summary>
@@ -54,6 +56,7 @@ void GameSystem::render(sf::RenderWindow& window) {
 	{
 		window.draw(*(s.get()));
 	}
+	Bullet::render(window);
 }
 
 /// <summary>
