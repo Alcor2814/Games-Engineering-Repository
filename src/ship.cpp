@@ -64,11 +64,11 @@ Player::Player() :
 void Player::Update(const float& dt) {
 	Ship::Update(dt);
 	//Move left
-	if (sf::Keyboard::isKeyPressed(GameSystem::controls[0])) {
+	if (sf::Keyboard::isKeyPressed(param::controls[0])) {
 		move(dt * (false ? 1.0f : -1.0f) * Player::speed, 0.0f);
 	}
 	//Move Right
-	if (sf::Keyboard::isKeyPressed(GameSystem::controls[1])) {
+	if (sf::Keyboard::isKeyPressed(param::controls[1])) {
 		move(dt * (true ? 1.0f : -1.0f) * Player::speed, 0.0f);
 	}
 }

@@ -10,11 +10,6 @@ struct GameSystem {
 	static sf::Texture spritesheet;
 	sf::Sprite invader;
 
-	static const sf::Keyboard::Key controls[3] = {
-		sf::Keyboard::A,   // Player Left
-		sf::Keyboard::Z,   // Player Right
-		sf::Keyboard::Space,   // Player Fire
-	};
 
 	// Game System functions
 	 void init();
