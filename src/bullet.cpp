@@ -52,13 +52,13 @@ void Bullet::_update(const float& dt) {
     else {
         move(sf::Vector2f(0, dt * Parameters::bulletSpeed * (_mode ? -1.0f : 1.0f)));
         const sf::FloatRect boundingBox = getGlobalBounds();
-        std::shared_ptr<Ship>& player = GameSystem::ships[0]; //we know that the first ship is the player
+        std::shared_ptr<Ship>& player = GameSystem::ships.back(); //PLayer is always the last loaded ship 
         for (std::shared_ptr<Ship>& s : GameSystem::ships) {
-            if ((_mode && s == player) || (!_mode && s != player)) {
-                //player bullets don't collide with player
+            if ((_mode == false && s == player) || (!_mode == true && s != player)) {
+                //sender bullets shouldn't collide with sender
                 continue;
             }
-            if (!s->exploded() &&
+            else if (!s->exploded() &&
                 s->getGlobalBounds().intersects(boundingBox)) {
                 //Explode the ship
                 s->explode();

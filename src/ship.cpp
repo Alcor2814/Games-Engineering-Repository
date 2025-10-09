@@ -93,8 +93,6 @@ void Player::Update(const float& dt) {
 	}
 }
 
-void Player::Move_Down() {
-
-}
+void Player::Move_Down() { }
 
 float Player::speed = 100.0f;
