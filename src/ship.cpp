@@ -84,9 +84,12 @@ void Player::Update(const float& dt) {
 
 	//Fire Bullet
 	static std::vector<std::shared_ptr<Bullet>> bullets;
-	if (sf::Keyboard::isKeyPressed(param::controls[2]))
+	static float firetime = 0.0f;
+	firetime -= dt;
+	if (firetime <= 0 && sf::Keyboard::isKeyPressed(param::controls[2]))
 	{
 		Bullet::fire(getPosition(), false);
+		firetime = 0.7f;
 	}
 }
 

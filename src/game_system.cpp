@@ -11,9 +11,6 @@ void GameSystem::init() {
 	if (!GameSystem::spritesheet.loadFromFile("resources/images/invaders_sheet.png")) {
 		std::cerr << "Failed to load spritesheet!" << std::endl;
 	}
-	else {
-		std::cout << "Loaded spritesheet" << std::endl;
-	}
 
 	std::shared_ptr<Invader> inv;
 	for (size_t i = 0; i < 6; i++)
