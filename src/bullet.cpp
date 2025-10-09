@@ -19,7 +19,10 @@ void Bullet::update(const float& dt) {
 }
 
 void Bullet::render(sf::RenderWindow& window) {
-
+    for (Bullet& b : _bullets)
+    {
+        window.draw(b);
+    }
 }
 
 void Bullet::fire(const sf::Vector2f& pos, const bool mode) {
