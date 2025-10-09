@@ -16,7 +16,8 @@ class Bullet : public sf::Sprite {
 	protected:
 		Bullet();
 		//false = player bullet, true = Enemy bullet
-		bool _mode;
+		static bool _mode = false;
+		void _update(const float &dt);
 		static unsigned char _bulletPointer;
 		static Bullet _bullets[256];
 };

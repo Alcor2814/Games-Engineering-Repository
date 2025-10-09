@@ -30,6 +30,10 @@ void Ship::explode() {
 	_exploded = true;
 }
 
+bool Ship::exploded() {
+	return _exploded;
+}
+
 Invader::Invader() : Ship() {}
 Invader::Invader(const Invader& inv) : Ship(inv) {}
 Invader::Invader(const sf::Texture& spritesheet, sf::IntRect ir, sf::Vector2f pos) : Ship(spritesheet, ir) {

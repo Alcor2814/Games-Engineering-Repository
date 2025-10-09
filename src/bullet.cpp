@@ -8,34 +8,14 @@ using namespace std;
 
 unsigned char Bullet::_bulletPointer;
 Bullet Bullet::_bullets[256];
-bool _mode;
 
 Bullet::Bullet() {};
 
 void Bullet::update(const float& dt) {
-	if (getPosition().y < -Parameters::sprite_size || getPosition().y > Parameters::gameHeight + Parameters::sprite_size) {
-		return;
-	}
-	else {
-		move(sf::Vector2f(0, dt * Parameters::bulletSpeed * (_mode ? -1.0f : 1.0f)));
-		const sf::FloatRect boundingBox = getGlobalBounds();
-		std::shared_ptr<Ship>& player = GameSystem::ships[0];
-		for (std::shared_ptr<Ship> & s : gs::ships)
-		{
-			if ((_mode && s == player) || (!_mode && s != player))
-			{
-				//Bullets don't collide with the type that fires them.
-				continue;
-			}
-			if (!s->is_exploded() && s->getGlobalBounds().intersects(boundingBox)) {
-				//Explode the ship.
-				s->explode();
-				//Warp bullet offscreen
-				setPosition(sf::Vector2f(-100, -100));
-				return;
-			}
-		}
-	}
+    for (Bullet& b : _bullets)
+    {
+        b._update(dt);
+    }
 }
 
 void Bullet::render(sf::RenderWindow& window) {
@@ -59,5 +39,31 @@ void Bullet::init() {
 		_bullets[i].setOrigin(Parameters::sprite_size / 2.f, Parameters::sprite_size / 2.f);
 		_bullets[i].setPosition(-100, -100);
 	}
+}
+
+void Bullet::_update(const float& dt) {
+    if (getPosition().y < -Parameters::sprite_size || getPosition().y > Parameters::gameHeight + Parameters::sprite_size) {
+        //off screen - do nothing
+        return;
+    }
+    else {
+        move(sf::Vector2f(0, dt * Parameters::bulletSpeed * (_mode ? -1.0f : 1.0f)));
+        const sf::FloatRect boundingBox = getGlobalBounds();
+        std::shared_ptr<Ship>& player = GameSystem::ships[0]; //we know that the first ship is the player
+        for (std::shared_ptr<Ship>& s : GameSystem::ships) {
+            if ((_mode && s == player) || (!_mode && s != player)) {
+                //player bullets don't collide with player
+                continue;
+            }
+            if (!s->exploded() &&
+                s->getGlobalBounds().intersects(boundingBox)) {
+                //Explode the ship
+                s->explode();
+                //warp bullet off-screen
+                setPosition(sf::Vector2f(-100, -100));
+                return;
+            }
+        }
+    }
 }
 

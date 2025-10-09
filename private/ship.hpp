@@ -14,8 +14,12 @@ class Ship : public sf::Sprite {
 			virtual ~Ship() = 0;
 		//Updater
 			virtual void Update(const float& dt);
+
 			virtual void Ship::Move_Down();
 			bool is_exploded() const;
+
+			//getter for _exploded
+			bool exploded();
 			virtual void explode();
 	protected:
 		sf::IntRect _sprite;
