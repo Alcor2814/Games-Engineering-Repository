@@ -20,9 +20,7 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
 add_subdirectory("lib/SFML")
 set(SFML_INCS "lib/SFML/include")
 link_directories("${CMAKE_BINARY_DIR}/lib/SFML/lib")
-add_library(${PROJECT_NAME} STATIC engine/game_system.cpp)
-target_include_directories(${PROJECT_NAME} INTERFACE engine)
-target_link_libraries(${PROJECT_NAME} sfml-graphics)
+add_subdirectory("lib/engine")
 
 #### Practical 5 ####
 add_executable(${PROJECT_NAME} ${SOURCES})
