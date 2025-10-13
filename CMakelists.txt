@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(space_invaders CXX)
+project(tile_engine CXX)
 
 # Require modern C++
 set(CMAKE_CXX_STANDARD 17)

@@ -1,3 +1,6 @@
+//game_parameters.hpp
+#pragma once
+
 //Parameters
 struct Parameters {
 	static constexpr int gameWidth = 800;
