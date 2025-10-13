@@ -9,7 +9,6 @@ int main() {
 	std::static_pointer_cast<MazeScene>(Scenes::maze)->set_file_path(param::maze_1);
 	Scenes::maze->load();
 	GameSystem::set_active_scene(Scenes::maze);
-	GameSystem::start(param::game_width, param::game_height, "tile_maze");
+	GameSystem::start(Parameters::game_width, Parameters::game_height, "tile_maze");
 	return 0;
 }
-
