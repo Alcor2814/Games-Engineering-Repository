@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(space_invaders CXX)
+project(pac_man CXX)
 
 # Require modern C++
 set(CMAKE_CXX_STANDARD 17)
@@ -21,7 +21,7 @@ add_subdirectory("lib/SFML")
 set(SFML_INCS "lib/SFML/include")
 link_directories("${CMAKE_BINARY_DIR}/lib/SFML/lib")
 
-#### Basic Structure ####
+#### Practical 5 ####
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE )
 target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCS})
