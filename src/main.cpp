@@ -1,9 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include "game_system.hpp"
 
 //Parameters
 const int gameWidth = 800;
 const int gameHeight = 600;
 const float time_step = 0.017f; //60 fps
+
+GameSystem gameSystem;
 
 int main() {
 	//create the window
@@ -11,7 +14,7 @@ int main() {
 	window.setVerticalSyncEnabled(true);
 
 	//initialise and load
-	GameSystem::init();
+	gameSystem.init();
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -25,12 +28,12 @@ int main() {
 		const float dt = clock.restart().asSeconds();
 
 		window.clear();
-		GameSystem::update(dt);
-		GameSystem::render(window);
+		gameSystem.update(dt);
+		gameSystem.render(window);
 		//wait for the time_step to finish before displaying the next frame.
 		sf::sleep(sf::seconds(time_step));
 		window.display();
 	}
 	//Unload and shutdown
-	clean();
+	gameSystem.clean();
 }
