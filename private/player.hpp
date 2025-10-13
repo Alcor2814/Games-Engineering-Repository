@@ -1,6 +1,6 @@
 //player.hpp
 #pragma once
-#include "entity.h"
+#include "entity.hpp"
 
 class Player : public Entity {
 	public:
@@ -9,5 +9,5 @@ class Player : public Entity {
 		void render(sf::RenderWindow& window) const override;
 	private:
 		static constexpr float _radius = 25.f;
-		static constexpr _speed = 200.0f;
+		static constexpr float _speed = 200.0f;
 };

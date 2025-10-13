@@ -4,22 +4,22 @@
 using namespace sf;
 using namespace std;
 
-void Player::update(double dt) {
+void Player::update(const float& dt) {
 	//Move left
-	if (sf::Keyboard::isKeyPressed(Parameters::controls[0]) && getPosition().x < Parameters::gameWidth) {
-		move(dt * (false ? 1.0f : -1.0f) * Player::speed, 0.0f);
+	if (sf::Keyboard::isKeyPressed(Parameters::controls[0]) && get_position().x < Parameters::gameWidth) {
+		move(sf::Vector2f(dt * (false ? 1.0f : -1.0f) * Player::_speed, 0.0f));
 	}
 	//Move Right
-	if (sf::Keyboard::isKeyPressed(Parameters::controls[1]) && getPosition().x > 0) {
-		move(dt * (true ? 1.0f : -1.0f) * Player::speed, 0.0f);
+	if (sf::Keyboard::isKeyPressed(Parameters::controls[1]) && get_position().x > 0) {
+		move(sf::Vector2f(dt * (true ? 1.0f : -1.0f) * Player::_speed, 0.0f));
 	}
 	//Move Up
-	if (sf::Keyboard::isKeyPressed(Parameters::controls[2]) && getPosition().y < Parameters::gameHeight) {
-		move(dt * (false ? 1.0f : -1.0f) * Player::speed, 0.0f);
+	if (sf::Keyboard::isKeyPressed(Parameters::controls[2]) && get_position().y < Parameters::gameHeight) {
+		move(sf::Vector2f(dt * (false ? 1.0f : -1.0f) * Player::_speed, 0.0f));
 	}
 	//Move Down
-	if (sf::Keyboard::isKeyPressed(param::controls[3]) && getPosition().y > 0) {
-		move(dt * (true ? 1.0f : -1.0f) * Player::speed, 0.0f);
+	if (sf::Keyboard::isKeyPressed(Parameters::controls[3]) && get_position().y > 0) {
+		move(sf::Vector2f(dt * (true ? 1.0f : -1.0f) * Player::_speed, 0.0f));
 	}
 
 	Entity::update(dt);

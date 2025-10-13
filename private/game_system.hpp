@@ -1,6 +1,7 @@
 //game_system.hpp
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "entity.hpp"
 
 class Scene {
 public:

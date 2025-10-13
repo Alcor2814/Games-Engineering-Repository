@@ -3,7 +3,7 @@
 
 
 
-void Scene::update(const float dt&) {
+void Scene::update(const float &dt) {
     for (std::shared_ptr<Entity>& ent _entities) {
         _entities.update(dt);
     }
