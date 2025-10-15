@@ -1,4 +1,5 @@
 #include "scenes.hpp"
+#include "player.hpp"
 
 std::shared_ptr<Scene> Scenes::maze;
 
@@ -9,5 +10,5 @@ void MazeScene::load() {
 
 }
 void MazeScene::reset() {
-    _entities[0]->set_position(...);
+    _entities[0]->set_position(sf::Vector2f(0, 0));
 }

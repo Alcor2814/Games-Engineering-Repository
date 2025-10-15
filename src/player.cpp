@@ -25,9 +25,9 @@ void Player::update(const float& dt) {
 	Entity::update(dt);
 }
 
-Player::Player() : Entity(make_unique<CircleShape>(_radius_)) {
+Player::Player() : Entity(make_unique<CircleShape>(_radius)) {
 	_shape->setFillColor(Color::Magenta);
-	_shape->setOrigin(sf::Vector2f(_radius, _radius_));
+	_shape->setOrigin(sf::Vector2f(_radius, _radius));
 }
 
 void Player::render(sf::RenderWindow& window) const {

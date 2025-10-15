@@ -16,4 +16,4 @@ class MazeScene : public Scene {
 
 struct Scenes {
 	static std::shared_ptr<Scene> maze;
-}
+};

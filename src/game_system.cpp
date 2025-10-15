@@ -1,22 +1,20 @@
 #include <iostream>
 #include "game_system.hpp"
-
-
+#include "game_parameters.hpp"
 
 void Scene::update(const float &dt) {
-    for (std::shared_ptr<Entity>& ent _entities) {
+    for (std::shared_ptr<Entity>& ent: _entities) {
         _entities.update(dt);
     }
 }
 void Scene::render(sf::RenderWindow& window) {
-    for (sstd::shared_ptr<Entity> &ent: _entities)
+    for (std::shared_ptr<Entity> &ent: _entities)
     {
         _entities.render(window);
     }
 }
 
-void GameSystem::start(unsigned int width, unsigned int height,
-    const std::string& name, const float& time_step) {
+void GameSystem::start(unsigned int width, unsigned int height, const std::string& name) {
     sf::RenderWindow window(sf::VideoMode({ width, height }), name);
     GameSystem::_init();
     sf::Event event;
@@ -36,7 +34,7 @@ void GameSystem::start(unsigned int width, unsigned int height,
         window.clear();
         GameSystem::_update(dt);
         GameSystem::_render(window);
-        sf::sleep(sf::seconds(time_step));
+        sf::sleep(sf::seconds(Parameters::time_step));
         //Wait for Vsync
         window.display();
     }

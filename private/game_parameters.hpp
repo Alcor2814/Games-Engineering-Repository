@@ -13,4 +13,6 @@ struct Parameters {
 		sf::Keyboard::Up,   // Player Up
 		sf::Keyboard::Down,   // Player Down
 	};
+
+	static inline const std::string mazes = "Resources/levels/";
 };
