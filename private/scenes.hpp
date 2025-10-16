@@ -8,6 +8,7 @@ class MazeScene : public Scene {
 		void update(const float& dt) override;
 		void render(sf::RenderWindow& window) override;
 		void load() override;
+		void unload() override;
 		void reset();
 		void set_file_path(const std::string& file_path);
 	private:

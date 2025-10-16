@@ -9,6 +9,27 @@ void MazeScene::load() {
     reset();
 
 }
+
+void MazeScene::update(float const& dt)
+{
+
+}
+
+void MazeScene::render(sf::RenderWindow& window)
+{
+
+}
+
+void MazeScene::unload()
+{
+
+}
+
 void MazeScene::reset() {
-    _entities[0]->set_position(sf::Vector2f(0, 0));
+    _entities[0]->set_position(sf::Vector2f(100, 100));
+}
+
+void MazeScene::set_file_path(const std::string& file_path)
+{
+
 }

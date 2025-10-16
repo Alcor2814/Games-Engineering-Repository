@@ -78,3 +78,8 @@ void GameSystem::_render(sf::RenderWindow& window) {
 void GameSystem::clean() {
 
 }
+
+void GameSystem::set_active_scene(const std::shared_ptr<Scene>& act_sc)
+{
+
+}

@@ -11,7 +11,7 @@ public:
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderWindow& window);
 	virtual void load() = 0;
-	virtual void unload();
+	virtual void unload() = 0;
 	std::vector<std::shared_ptr<Entity>>& get_entities() { return _entities; }
 
 protected:
