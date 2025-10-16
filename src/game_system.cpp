@@ -4,13 +4,13 @@
 
 void Scene::update(const float &dt) {
     for (std::shared_ptr<Entity>& ent: _entities) {
-        _entities.update(dt);
+        ent->update(dt);
     }
 }
 void Scene::render(sf::RenderWindow& window) {
     for (std::shared_ptr<Entity> &ent: _entities)
     {
-        _entities.render(window);
+        ent->render(window);
     }
 }
 
