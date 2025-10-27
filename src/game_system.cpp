@@ -1,6 +1,7 @@
 #include <iostream>
 #include "game_system.hpp"
 #include "game_parameters.hpp"
+#include "player.hpp"
 
 void Scene::update(const float &dt) {
     for (std::shared_ptr<Entity>& ent: _entities) {
@@ -46,7 +47,8 @@ void GameSystem::start(unsigned int width, unsigned int height, const std::strin
 /// Initialises any values that need to be loaded.
 /// </summary>
 void GameSystem::_init() {
-
+    Player* player = new Player();
+    std::vector<std::shared_ptr<Entity>> entities = Scene::get_entities();
 }
 
 /// <summary>
