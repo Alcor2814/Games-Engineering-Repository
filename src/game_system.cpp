@@ -37,3 +37,28 @@ void GameSystem::render(sf::RenderWindow& window) {
 void GameSystem::clean() {
 	
 }
+
+
+Scene* GameSystem::active_scene = nullptr;
+
+// Scene
+void Scene::update(const float& dt)
+{
+    for (std::shared_ptr<Entity>& ent : m_entities)
+    {
+        ent->update(dt);
+    }
+}
+
+void Scene::render(sf::RenderWindow& window)
+{
+    for (std::shared_ptr<Entity>& ent : m_entities)
+    {
+        ent->render(window);
+    }
+}
+
+void Scene::unload()
+{
+    return;
+}
